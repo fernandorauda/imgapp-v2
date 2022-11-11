@@ -21,6 +21,17 @@
 		CEC1C7ED291EBE2400283214 /* ImageDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C7EC291EBE2400283214 /* ImageDto.swift */; };
 		CEC1C7EF291EBE8E00283214 /* UserDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C7EE291EBE8E00283214 /* UserDto.swift */; };
 		CEC1C7F1291EBED600283214 /* UrlDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C7F0291EBED600283214 /* UrlDto.swift */; };
+		CEC1C7F4291EC20A00283214 /* ImageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C7F3291EC20A00283214 /* ImageDataSource.swift */; };
+		CEC1C7F8291EC48A00283214 /* ImageRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C7F7291EC48A00283214 /* ImageRepositoryType.swift */; };
+		CEC1C7FA291EC4E000283214 /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C7F9291EC4E000283214 /* ImageRepository.swift */; };
+		CEC1C7FD291EC5F200283214 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C7FC291EC5F200283214 /* Mapper.swift */; };
+		CEC1C802291EC63300283214 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C801291EC63300283214 /* Image.swift */; };
+		CEC1C805291EC69D00283214 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C804291EC69D00283214 /* User.swift */; };
+		CEC1C807291EC70600283214 /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C806291EC70600283214 /* Url.swift */; };
+		CEC1C809291ECCF500283214 /* ImageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C808291ECCF500283214 /* ImageMapper.swift */; };
+		CEC1C80C291ECE7800283214 /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C80B291ECE7800283214 /* UserMapper.swift */; };
+		CEC1C80E291ECEB400283214 /* UrlMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C80D291ECEB400283214 /* UrlMapper.swift */; };
+		CEC1C811291ECF1B00283214 /* String+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C810291ECF1B00283214 /* String+Optional.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +50,17 @@
 		CEC1C7EC291EBE2400283214 /* ImageDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDto.swift; sourceTree = "<group>"; };
 		CEC1C7EE291EBE8E00283214 /* UserDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDto.swift; sourceTree = "<group>"; };
 		CEC1C7F0291EBED600283214 /* UrlDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlDto.swift; sourceTree = "<group>"; };
+		CEC1C7F3291EC20A00283214 /* ImageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataSource.swift; sourceTree = "<group>"; };
+		CEC1C7F7291EC48A00283214 /* ImageRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRepositoryType.swift; sourceTree = "<group>"; };
+		CEC1C7F9291EC4E000283214 /* ImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRepository.swift; sourceTree = "<group>"; };
+		CEC1C7FC291EC5F200283214 /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
+		CEC1C801291EC63300283214 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		CEC1C804291EC69D00283214 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CEC1C806291EC70600283214 /* Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
+		CEC1C808291ECCF500283214 /* ImageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMapper.swift; sourceTree = "<group>"; };
+		CEC1C80B291ECE7800283214 /* UserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
+		CEC1C80D291ECEB400283214 /* UrlMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlMapper.swift; sourceTree = "<group>"; };
+		CEC1C810291ECF1B00283214 /* String+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Optional.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +140,7 @@
 		CEC1C7D0291EB5C700283214 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				CEC1C80F291ECF0800283214 /* Extension */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -132,6 +155,9 @@
 		CEC1C7D2291EB5D900283214 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				CEC1C7FF291EC61600283214 /* Model */,
+				CEC1C7FB291EC5E100283214 /* Mapper */,
+				CEC1C7F6291EC46600283214 /* Repository */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -139,6 +165,7 @@
 		CEC1C7D3291EB5E700283214 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				CEC1C7F5291EC45C00283214 /* Repository */,
 				CEC1C7D4291EB5FE00283214 /* Remote */,
 			);
 			path = Data;
@@ -147,6 +174,7 @@
 		CEC1C7D4291EB5FE00283214 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				CEC1C7F2291EC1F800283214 /* DataSource */,
 				CEC1C7E5291EBDAF00283214 /* Dto */,
 				CEC1C7E0291EBD0200283214 /* Endpoints */,
 				CEC1C7D5291EB78600283214 /* Api */,
@@ -225,6 +253,91 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
+		CEC1C7F2291EC1F800283214 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				CEC1C7F3291EC20A00283214 /* ImageDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		CEC1C7F5291EC45C00283214 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				CEC1C7F9291EC4E000283214 /* ImageRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		CEC1C7F6291EC46600283214 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				CEC1C7F7291EC48A00283214 /* ImageRepositoryType.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		CEC1C7FB291EC5E100283214 /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				CEC1C80A291ECE6D00283214 /* User */,
+				CEC1C7FE291EC5FF00283214 /* Image */,
+				CEC1C7FC291EC5F200283214 /* Mapper.swift */,
+			);
+			path = Mapper;
+			sourceTree = "<group>";
+		};
+		CEC1C7FE291EC5FF00283214 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				CEC1C808291ECCF500283214 /* ImageMapper.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		CEC1C7FF291EC61600283214 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CEC1C803291EC69000283214 /* User */,
+				CEC1C800291EC61D00283214 /* Image */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CEC1C800291EC61D00283214 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				CEC1C801291EC63300283214 /* Image.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		CEC1C803291EC69000283214 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				CEC1C804291EC69D00283214 /* User.swift */,
+				CEC1C806291EC70600283214 /* Url.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		CEC1C80A291ECE6D00283214 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				CEC1C80B291ECE7800283214 /* UserMapper.swift */,
+				CEC1C80D291ECEB400283214 /* UrlMapper.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		CEC1C80F291ECF0800283214 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				CEC1C810291ECF1B00283214 /* String+Optional.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -295,6 +408,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC1C80E291ECEB400283214 /* UrlMapper.swift in Sources */,
+				CEC1C80C291ECE7800283214 /* UserMapper.swift in Sources */,
+				CEC1C811291ECF1B00283214 /* String+Optional.swift in Sources */,
+				CEC1C809291ECCF500283214 /* ImageMapper.swift in Sources */,
 				CEC1C7C2291EB4BF00283214 /* ContentView.swift in Sources */,
 				CEC1C7E4291EBD6F00283214 /* UserEndpoints.swift in Sources */,
 				CEC1C7DC291EB80100283214 /* UrlConfiguration.swift in Sources */,
@@ -302,11 +419,18 @@
 				CEC1C7DF291EB86600283214 /* ApiProvider.swift in Sources */,
 				CEC1C7F1291EBED600283214 /* UrlDto.swift in Sources */,
 				CEC1C7EF291EBE8E00283214 /* UserDto.swift in Sources */,
+				CEC1C7FA291EC4E000283214 /* ImageRepository.swift in Sources */,
+				CEC1C807291EC70600283214 /* Url.swift in Sources */,
 				CEC1C7E2291EBD4D00283214 /* ImageEndpoints.swift in Sources */,
 				CEC1C7C0291EB4BF00283214 /* ImageAppApp.swift in Sources */,
+				CEC1C7F8291EC48A00283214 /* ImageRepositoryType.swift in Sources */,
+				CEC1C802291EC63300283214 /* Image.swift in Sources */,
 				CEC1C7ED291EBE2400283214 /* ImageDto.swift in Sources */,
+				CEC1C7FD291EC5F200283214 /* Mapper.swift in Sources */,
+				CEC1C805291EC69D00283214 /* User.swift in Sources */,
 				CEC1C7EA291EBDE100283214 /* ImagesRequest.swift in Sources */,
 				CEC1C7DA291EB7EB00283214 /* NetworkConfigurable.swift in Sources */,
+				CEC1C7F4291EC20A00283214 /* ImageDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

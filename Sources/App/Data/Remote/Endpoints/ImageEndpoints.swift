@@ -8,14 +8,14 @@
 import Foundation
 
 struct ImageEndpoints {
-    static func getImages(with imageRequest: ImagesRequest) -> Endpoint<[ImageDto]> {
+    static func getImages(imageRequest: ImagesRequest) -> Endpoint<[ImageDto]> {
         Endpoint(path: "photos",
                  method: .get,
                  queryParametersEncodable: imageRequest
         )
     }
 
-    static func getImage(with id: String) -> Endpoint<ImageDto> {
+    static func getImage(id: String) -> Endpoint<ImageDto> {
         Endpoint(path: "photos/\(id)/",
                  method: .get
         )
