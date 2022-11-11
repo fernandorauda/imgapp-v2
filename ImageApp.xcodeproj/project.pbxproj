@@ -32,6 +32,7 @@
 		CEC1C80C291ECE7800283214 /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C80B291ECE7800283214 /* UserMapper.swift */; };
 		CEC1C80E291ECEB400283214 /* UrlMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C80D291ECEB400283214 /* UrlMapper.swift */; };
 		CEC1C811291ECF1B00283214 /* String+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C810291ECF1B00283214 /* String+Optional.swift */; };
+		CEC1C815291ED44D00283214 /* RetrieveImagesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1C814291ED44D00283214 /* RetrieveImagesUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		CEC1C80B291ECE7800283214 /* UserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
 		CEC1C80D291ECEB400283214 /* UrlMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlMapper.swift; sourceTree = "<group>"; };
 		CEC1C810291ECF1B00283214 /* String+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Optional.swift"; sourceTree = "<group>"; };
+		CEC1C814291ED44D00283214 /* RetrieveImagesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveImagesUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 		CEC1C7D2291EB5D900283214 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				CEC1C812291ED42300283214 /* UseCase */,
 				CEC1C7FF291EC61600283214 /* Model */,
 				CEC1C7FB291EC5E100283214 /* Mapper */,
 				CEC1C7F6291EC46600283214 /* Repository */,
@@ -338,6 +341,22 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		CEC1C812291ED42300283214 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				CEC1C813291ED43A00283214 /* Image */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		CEC1C813291ED43A00283214 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				CEC1C814291ED44D00283214 /* RetrieveImagesUseCase.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -419,6 +438,7 @@
 				CEC1C7DF291EB86600283214 /* ApiProvider.swift in Sources */,
 				CEC1C7F1291EBED600283214 /* UrlDto.swift in Sources */,
 				CEC1C7EF291EBE8E00283214 /* UserDto.swift in Sources */,
+				CEC1C815291ED44D00283214 /* RetrieveImagesUseCase.swift in Sources */,
 				CEC1C7FA291EC4E000283214 /* ImageRepository.swift in Sources */,
 				CEC1C807291EC70600283214 /* Url.swift in Sources */,
 				CEC1C7E2291EBD4D00283214 /* ImageEndpoints.swift in Sources */,
