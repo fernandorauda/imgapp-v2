@@ -21,8 +21,8 @@ final class UserMapper: Mapper {
         }
         
         return User(id: object.id.orEmptyString(),
-                    username: object.id.orEmptyString(),
-                    name: object.id.orEmptyString(),
+                    username: object.username.orEmptyString(),
+                    name: object.name.orEmptyString(),
                     profileImage: url,
                     totalLikes: object.totalLikes.orZero(),
                     totalPhotos: object.totalPhotos.orZero(),
