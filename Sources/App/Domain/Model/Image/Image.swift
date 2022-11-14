@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Image: Codable {
+class Image: Codable, Hashable, Identifiable {
     let id: String
     let likes: Int
     let desc: String
@@ -31,6 +31,14 @@ class Image: Codable {
         case urls
         case user
         case createdAt = "created_at"
+    }
+    
+    static func == (lhs: Image, rhs: Image) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
     
     func numberOfLikes() -> String? {

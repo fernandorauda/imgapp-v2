@@ -9,16 +9,20 @@ import SwiftUI
 
 struct ImageListView: View {
     @StateObject private var viewModel = ImageListViewModel()
+    
+    let columns: [GridItem] = Array(repeating: .init(.adaptive(minimum: 120)), count: 2)
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.images, id: \.id) { image in
-                    Spacer().frame(height: 16)
-                    Text(image.user.name)
-                        .listRowSeparator(.hidden)
-                        .buttonStyle(.plain)
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 16) {
+                    ForEach(viewModel.images, id: \.id) { image in
+                        ImageView(image: image)
+                            .listRowSeparator(.hidden)
+                            .buttonStyle(.plain)
+                    }
                 }
+                .padding()
             }
             .listStyle(.plain)
             .navigationTitle("Images")
@@ -28,5 +32,6 @@ struct ImageListView: View {
         }.refreshable {
             await viewModel.retrieveImages()
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
