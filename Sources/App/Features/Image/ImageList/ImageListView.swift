@@ -15,14 +15,29 @@ struct ImageListView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: columns, spacing: 16) {
-                    ForEach(viewModel.images, id: \.id) { image in
-                        ImageView(image: image)
+                if viewModel.isLoading {
+                    LazyVGrid(columns: columns, content: {
+                        ForEach((1...10), id: \.self) { number in
+                            VStack(alignment: .leading) {
+                                //Text("\(number)")
+                            }
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 300, maxHeight: .infinity)
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(24)
                             .listRowSeparator(.hidden)
-                            .buttonStyle(.plain)
+                        }
+                    })
+                    .padding()
+                } else {
+                    LazyVGrid(columns: columns, spacing: 16) {
+                        ForEach(viewModel.images, id: \.id) { image in
+                            ImageView(image: image)
+                                .listRowSeparator(.hidden)
+                                .buttonStyle(.plain)
+                        }
                     }
+                    .padding()
                 }
-                .padding()
             }
             .listStyle(.plain)
             .navigationTitle("Images")

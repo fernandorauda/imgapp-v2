@@ -9,16 +9,18 @@ import Foundation
 
 final class ImageListViewModel: ObservableObject {
     @Published var images: [Image] = []
+    @Published var isLoading: Bool = false
     
     let retrieveImagesUseCase = RetrieveImagesUseCase()
     
     func retrieveImages() async {
+        isLoading = true
         do {
             let request = ImagesRequest(page: 1, perPage: 100)
             let images = try await retrieveImagesUseCase.invoke(request: request)
             
-            print(images.count)
             DispatchQueue.main.async {
+                self.isLoading = false
                 self.images = images
             }
         } catch {
