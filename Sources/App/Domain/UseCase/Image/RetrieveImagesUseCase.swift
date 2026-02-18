@@ -14,7 +14,7 @@ final class RetrieveImagesUseCase {
         self.repository = repository
     }
     
-    func invoke(request: ImagesRequest) async throws -> [Image] {
+    func invoke(request: ImagesRequest) async throws -> [ImageModel] {
         let result = try await repository.retrieveImages(imagesRequest: request)
         let imageMapper = ImageMapper()
         

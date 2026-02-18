@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct User: Codable {
+struct UserModel: Codable {
     let id: String
     let username: String
     let name: String
-    let profileImage: Url
+    let profileImage: UrlModel
     let totalLikes: Int
     let totalPhotos: Int
     let totalCollections: Int
@@ -34,7 +34,7 @@ struct User: Codable {
         id: String,
         username: String,
         name: String,
-        profileImage: Url,
+        profileImage: UrlModel,
         totalLikes: Int,
         totalPhotos: Int,
         totalCollections: Int,
@@ -52,28 +52,16 @@ struct User: Codable {
         self.bio = bio
     }
     
-    static func createEmptyInstance() -> User {
-        User(id: "",
+    static func createEmptyInstance() -> UserModel {
+        UserModel(id: "",
              username: "",
              name: "",
-             profileImage: Url.createEmptyInstance(),
+             profileImage: UrlModel.createEmptyInstance(),
              totalLikes: 0,
              totalPhotos: 0,
              totalCollections: 0,
              location: "",
              bio: "")
-    }
-    
-    func numberOfPhotos() -> String? {
-        "\(totalPhotos)"
-    }
-    
-    func numberOfLikes() -> String? {
-        "\(totalLikes)"
-    }
-    
-    func numberOfCollections() -> String? {
-        "\(totalCollections)"
     }
 }
 

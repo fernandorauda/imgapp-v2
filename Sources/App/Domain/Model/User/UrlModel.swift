@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Url: Codable {
+struct UrlModel: Codable {
     let regular: String
     let full: String
     let small: String
@@ -25,8 +25,8 @@ struct Url: Codable {
         self.medium = medium
     }
     
-    static func createEmptyInstance() -> Url {
-        Url(
+    static func createEmptyInstance() -> UrlModel {
+        UrlModel(
             regular: "",
             full: "",
             small: "",

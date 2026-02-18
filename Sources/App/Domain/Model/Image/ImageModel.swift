@@ -11,11 +11,11 @@ struct ImageModel: Codable, Hashable, Identifiable {
     let id: String
     let likes: Int
     let desc: String
-    let urls: Url
-    let user: User
+    let urls: UrlModel
+    let user: UserModel
     let createdAt: String
     
-    init(id: String, likes: Int, urls: Url, user: User, desc: String, createdAt: String) {
+    init(id: String, likes: Int, urls: UrlModel, user: UserModel, desc: String, createdAt: String) {
         self.id = id
         self.likes = likes
         self.urls = urls

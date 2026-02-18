@@ -9,14 +9,14 @@ import Foundation
 
 final class ImageMapper: Mapper {
     typealias FROM = ImageDto
-    typealias TO = Image
+    typealias TO = ImageModel
     
     let urlMapper: UrlMapper = UrlMapper()
     let userMapper: UserMapper = UserMapper()
     
     func call(object: FROM) -> TO {
-        var user = User.createEmptyInstance()
-        var url = Url.createEmptyInstance()
+        var user = UserModel.createEmptyInstance()
+        var url = UrlModel.createEmptyInstance()
         
         if let userInfo = object.user {
             user = userMapper.call(object: userInfo)
@@ -26,7 +26,7 @@ final class ImageMapper: Mapper {
             url = urlMapper.call(object: urlInfo)
         }
         
-        return Image(id: object.id.orEmptyString(),
+        return ImageModel(id: object.id.orEmptyString(),
                      likes: object.likes.orZero(),
                      urls: url,
                      user: user,
