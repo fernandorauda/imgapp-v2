@@ -19,9 +19,17 @@ final class ImageDataSource: ImageDataSourceType {
     }
     
     func retrieveImages(imagesRequest: ImagesRequest) async throws -> [ImageDto] {
-        let endpoint = ImageEndpoints.getImages(imageRequest: imagesRequest)
-        let response = try await apiProvider.request(endpoint: endpoint)
-        
-        return response
+        do {
+            let endpoint = ImageEndpoints.getImages(imageRequest: imagesRequest)
+            let response: [ImageDto] = try await apiProvider.request(endpoint: endpoint)
+            
+            return response
+        } catch let networkError as NetworkError {
+            // Propagate NetworkError to upper layers
+            throw networkError
+        } catch {
+            // Unknown error - wrap it
+            throw NetworkError.unknown(statusCode: -1)
+        }
     }
 }

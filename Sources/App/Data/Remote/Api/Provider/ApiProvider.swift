@@ -16,22 +16,83 @@ struct ApiProvider {
     }
     
     func request<T: Decodable, E: ResponseRequestable>(endpoint: E) async throws -> T where E.Response == T {
-        var request = try endpoint.urlRequest(networkConfig: config)
+        let request = try endpoint.urlRequest(networkConfig: config)
         
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response): (Data, URLResponse)
+        
+        do {
+            (data, response) = try await URLSession.shared.data(for: request)
+        } catch let urlError as URLError {
+            // Handle URL-specific errors
+            throw mapURLError(urlError)
+        } catch {
+            // Generic error
+            throw NetworkError.unknown(statusCode: -1)
+        }
+        
+        // Validate HTTP response
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw NetworkError.invalidResponse
+        }
         
         #if DEBUG
-            print("RESPONSE: \(response.debugDescription)")
+            print("RESPONSE: \(httpResponse.statusCode) - \(httpResponse.debugDescription)")
             if let jsonResponse = String(data: data, encoding: .utf8) {
                 print("**********************************")
                 print("Response JSON : \(jsonResponse)")
                 print("**********************************")
             }
         #endif
-
-        let result: T = try endpoint.responseDecoder.decode(data)
-        return result
-
+        
+        // Validate status code
+        try validateStatusCode(httpResponse.statusCode)
+        
+        // Decode response
+        do {
+            let result: T = try endpoint.responseDecoder.decode(data)
+            return result
+        } catch {
+            throw NetworkError.decodingFailed(error)
+        }
     }
-
+    
+    // MARK: - Private Helpers
+    
+    private func validateStatusCode(_ statusCode: Int) throws {
+        switch statusCode {
+        case 200...299:
+            return // Success
+        case 400:
+            throw NetworkError.badRequest
+        case 401:
+            throw NetworkError.unauthorized
+        case 403:
+            throw NetworkError.forbidden
+        case 404:
+            throw NetworkError.notFound
+        case 408:
+            throw NetworkError.requestTimeout
+        case 429:
+            throw NetworkError.tooManyRequests
+        case 500...599:
+            throw NetworkError.serverError
+        default:
+            throw NetworkError.unknown(statusCode: statusCode)
+        }
+    }
+    
+    private func mapURLError(_ error: URLError) -> NetworkError {
+        switch error.code {
+        case .notConnectedToInternet, .networkConnectionLost:
+            return .noInternetConnection
+        case .timedOut:
+            return .timeout
+        case .cancelled:
+            return .cancelled
+        case .cannotFindHost, .cannotConnectToHost, .dnsLookupFailed:
+            return .noInternetConnection
+        default:
+            return .unknown(statusCode: error.errorCode)
+        }
+    }
 }

@@ -15,6 +15,14 @@ final class ImageRepository: ImageRepositoryType {
     }
     
     func retrieveImages(imagesRequest: ImagesRequest) async throws -> [ImageDto] {
-        try await dataSource.retrieveImages(imagesRequest: imagesRequest)
+        do {
+            return try await dataSource.retrieveImages(imagesRequest: imagesRequest)
+        } catch let networkError as NetworkError {
+            // Convert NetworkError to DomainError at the boundary
+            throw networkError.toDomainError()
+        } catch {
+            // Unknown error
+            throw DomainError.unknown
+        }
     }
 }

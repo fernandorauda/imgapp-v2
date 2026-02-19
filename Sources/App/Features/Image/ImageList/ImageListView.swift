@@ -29,6 +29,9 @@ struct ImageListView: View {
                         }
                     }
                     .padding()
+                } else if viewModel.images.isEmpty && !viewModel.isLoading {
+                    // Empty state (could be after error or no data)
+                    emptyStateView
                 } else {
                     VStack(spacing: 0) {
                         // Pinterest-style masonry layout with infinite scroll
@@ -62,12 +65,78 @@ struct ImageListView: View {
             }
             .listStyle(.plain)
             .navigationTitle("Images")
-            
-        }.task {
+            .alert(isPresented: $viewModel.showError) {
+                createErrorAlert()
+            }
+        }
+        .task {
             await viewModel.retrieveImages()
-        }.refreshable {
+        }
+        .refreshable {
             await viewModel.retrieveImages()
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    // MARK: - Error Alert
+    
+    private func createErrorAlert() -> Alert {
+        if viewModel.isRetryable {
+            return Alert(
+                title: Text("Error"),
+                message: Text(viewModel.errorMessage ?? "Ocurrió un error inesperado"),
+                primaryButton: .default(Text("Reintentar")) {
+                    viewModel.retryLastOperation()
+                },
+                secondaryButton: .cancel(Text("Cancelar")) {
+                    viewModel.clearError()
+                }
+            )
+        } else {
+            return Alert(
+                title: Text("Error"),
+                message: Text(viewModel.errorMessage ?? "Ocurrió un error inesperado"),
+                dismissButton: .default(Text("OK")) {
+                    viewModel.clearError()
+                }
+            )
+        }
+    }
+    
+    // MARK: - Empty State
+    
+    private var emptyStateView: some View {
+        VStack(spacing: 20) {
+            Image(systemName: viewModel.errorIcon)
+                .font(.system(size: 60))
+                .foregroundColor(.gray)
+            
+            Text(viewModel.errorMessage ?? "No hay imágenes para mostrar")
+                .font(.title3)
+                .multilineTextAlignment(.center)
+                .foregroundColor(.secondary)
+                .padding(.horizontal)
+            
+            if viewModel.isRetryable {
+                Button(action: {
+                    Task {
+                        await viewModel.retrieveImages()
+                    }
+                }) {
+                    HStack {
+                        Image(systemName: "arrow.clockwise")
+                        Text("Reintentar")
+                    }
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 30)
+                    .padding(.vertical, 12)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding()
     }
 }

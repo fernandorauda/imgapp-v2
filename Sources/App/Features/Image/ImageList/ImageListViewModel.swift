@@ -14,6 +14,13 @@ final class ImageListViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var isLoadingMore: Bool = false
     
+    // MARK: - Error State
+    @Published var errorMessage: String?
+    @Published var errorIcon: String = "exclamationmark.triangle"
+    @Published var showError: Bool = false
+    @Published var isRetryable: Bool = true
+    @Published var currentError: DomainError?
+    
     // MARK: - Private Properties
     private var currentPage: Int = 0
     private var canLoadMorePages: Bool = true
@@ -34,15 +41,19 @@ final class ImageListViewModel: ObservableObject {
         isCurrentlyLoading = true
         currentPage = 1
         
+        // Clear previous errors
+        clearError()
+        
         do {
             let request = ImagesRequest(page: currentPage, perPage: perPage)
             let images = try await retrieveImagesUseCase.invoke(request: request)
             
             self.images = images
             self.canLoadMorePages = images.count >= perPage
+        } catch let domainError as DomainError {
+            handleError(domainError)
         } catch {
-            print("❌ Error loading images: \(error)")
-            self.canLoadMorePages = false
+            handleError(DomainError.unknown)
         }
         
         isLoading = false
@@ -79,8 +90,16 @@ final class ImageListViewModel: ObservableObject {
                 // No more images available
                 self.canLoadMorePages = false
             }
+        } catch let domainError as DomainError {
+            // For pagination errors, we don't show alert, just log
+            #if DEBUG
+            print("❌ Error loading more images: \(domainError.technicalDescription)")
+            #endif
+            self.canLoadMorePages = false
         } catch {
+            #if DEBUG
             print("❌ Error loading more images: \(error)")
+            #endif
             self.canLoadMorePages = false
         }
         
@@ -100,5 +119,34 @@ final class ImageListViewModel: ObservableObject {
         
         let threshold = images.count - 3
         return currentIndex >= threshold
+    }
+    
+    // MARK: - Error Handling
+    
+    /// Handle domain errors and update UI state
+    private func handleError(_ error: DomainError) {
+        self.currentError = error
+        self.errorMessage = error.userMessage
+        self.errorIcon = error.icon
+        self.isRetryable = error.isRetryable
+        self.showError = true
+        
+        #if DEBUG
+        print("❌ Error: \(error.technicalDescription)")
+        #endif
+    }
+    
+    /// Clear error state
+    func clearError() {
+        self.currentError = nil
+        self.errorMessage = nil
+        self.showError = false
+    }
+    
+    /// Retry the last failed operation
+    func retryLastOperation() {
+        Task {
+            await retrieveImages()
+        }
     }
 }
