@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct ImageAppApp: App {
+    @StateObject private var container  = DIContainer();
+    
     var body: some Scene {
         WindowGroup {
-            ImageListView()
+            ImageListView(viewModel: container.makeImageListViewModel()).environmentObject(container)
         }
     }
 }
