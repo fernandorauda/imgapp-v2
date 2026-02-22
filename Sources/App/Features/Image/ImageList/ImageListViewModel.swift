@@ -10,11 +10,13 @@ import Foundation
 @MainActor
 final class ImageListViewModel: ObservableObject {
     // MARK: - Published Properties
+    
     @Published var images: [ImageModel] = []
     @Published var isLoading: Bool = false
     @Published var isLoadingMore: Bool = false
     
     // MARK: - Error State
+    
     @Published var errorMessage: String?
     @Published var errorIcon: String = "exclamationmark.triangle"
     @Published var showError: Bool = false
@@ -22,26 +24,25 @@ final class ImageListViewModel: ObservableObject {
     @Published var currentError: DomainError?
     
     // MARK: - Private Properties
+    
     private var currentPage: Int = 0
     private var canLoadMorePages: Bool = true
     private let perPage: Int = 20
     private var isCurrentlyLoading: Bool = false
     
     // MARK: - Dependencies
+
     let retrieveImagesUseCase = RetrieveImagesUseCase()
     
     // MARK: - Public Methods
     
     /// Retrieves the initial set of images (first page)
     func retrieveImages() async {
-        // Prevent multiple simultaneous loads
         guard !isCurrentlyLoading else { return }
         
         isLoading = true
         isCurrentlyLoading = true
         currentPage = 1
-        
-        // Clear previous errors
         clearError()
         
         do {
@@ -62,7 +63,6 @@ final class ImageListViewModel: ObservableObject {
     
     /// Loads the next page of images (infinite scroll)
     func loadMoreImagesIfNeeded() async {
-        // Guard conditions to prevent unnecessary loads
         guard canLoadMorePages,
               !isCurrentlyLoading,
               !isLoading,
@@ -79,19 +79,15 @@ final class ImageListViewModel: ObservableObject {
             let request = ImagesRequest(page: nextPage, perPage: perPage)
             let newImages = try await retrieveImagesUseCase.invoke(request: request)
             
-            // Only update if we received images
             if !newImages.isEmpty {
                 self.images.append(contentsOf: newImages)
                 self.currentPage = nextPage
                 
-                // If we received fewer images than requested, we've reached the end
                 self.canLoadMorePages = newImages.count >= perPage
             } else {
-                // No more images available
                 self.canLoadMorePages = false
             }
         } catch let domainError as DomainError {
-            // For pagination errors, we don't show alert, just log
             #if DEBUG
             print("❌ Error loading more images: \(domainError.technicalDescription)")
             #endif
@@ -112,7 +108,6 @@ final class ImageListViewModel: ObservableObject {
         guard let currentImage = currentImage,
               !images.isEmpty else { return false }
         
-        // Trigger load when we're near the end (last 3 items)
         guard let currentIndex = images.firstIndex(where: { $0.id == currentImage.id }) else {
             return false
         }

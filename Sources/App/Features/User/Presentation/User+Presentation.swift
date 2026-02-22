@@ -2,8 +2,8 @@
 //  User+Presentation.swift
 //  ImageApp
 //
-//  Extension para lógica de presentación del modelo User
-//  Separa concerns según Clean Architecture
+//  Extension for presentation logic of the User model
+//  Separates concerns according to Clean Architecture
 //
 
 import Foundation
@@ -12,59 +12,59 @@ import Foundation
 
 extension UserModel {
     
-    /// Retorna el número de fotos formateado para UI
+    /// Returns the number of photos formatted for UI
     var formattedPhotos: String {
         "\(totalPhotos)"
     }
     
-    /// Retorna el número de likes formateado para UI
+    /// Returns the number of likes formatted for UI
     var formattedLikes: String {
         "\(totalLikes)"
     }
     
-    /// Retorna el número de colecciones formateado para UI
+    /// Returns the number of collections formatted for UI
     var formattedCollections: String {
         "\(totalCollections)"
     }
     
-    /// Retorna el número de fotos con formato abreviado (ej: 1.2K)
+    /// Returns the number of photos in abbreviated format (e.ge.g: 1.2K)
     var formattedPhotosShort: String {
         formatNumber(totalPhotos)
     }
     
-    /// Retorna el número de likes con formato abreviado (ej: 3.5M)
+    /// Returns the number of likes in abbreviated format (e.g: 3.5M)
     var formattedLikesShort: String {
         formatNumber(totalLikes)
     }
     
-    /// Retorna el número de colecciones con formato abreviado
+    /// Returns the number of collections in abbreviated format
     var formattedCollectionsShort: String {
         formatNumber(totalCollections)
     }
     
-    /// Retorna el nombre de usuario con @ si no lo tiene
+    /// Returns the username with @ if it doesn't have it
     var displayUsername: String {
         username.hasPrefix("@") ? username : "@\(username)"
     }
     
-    /// Retorna la bio o un texto por defecto si está vacía
+    /// Returns the bio or default text if empty
     var displayBio: String {
         bio.isEmpty ? "Sin biografía" : bio
     }
     
-    /// Retorna la ubicación o un texto por defecto si está vacía
+    /// Returns the location or default text if empty
     var displayLocation: String {
         location.isEmpty ? "Ubicación no disponible" : location
     }
     
-    /// Indica si el usuario tiene estadísticas
+    /// Indicates if the user has statistics
     var hasStatistics: Bool {
         totalPhotos > 0 || totalLikes > 0 || totalCollections > 0
     }
     
     // MARK: - Private Helpers
     
-    /// Formatea un número con abreviación (K, M)
+    /// Formats a number with abbreviation (K, M)
     private func formatNumber(_ number: Int) -> String {
         switch number {
         case 1_000_000...:

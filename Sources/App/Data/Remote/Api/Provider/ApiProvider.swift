@@ -23,10 +23,8 @@ struct ApiProvider {
         do {
             (data, response) = try await URLSession.shared.data(for: request)
         } catch let urlError as URLError {
-            // Handle URL-specific errors
             throw mapURLError(urlError)
         } catch {
-            // Generic error
             throw NetworkError.unknown(statusCode: -1)
         }
         
@@ -44,10 +42,8 @@ struct ApiProvider {
             }
         #endif
         
-        // Validate status code
         try validateStatusCode(httpResponse.statusCode)
         
-        // Decode response
         do {
             let result: T = try endpoint.responseDecoder.decode(data)
             return result
@@ -61,7 +57,7 @@ struct ApiProvider {
     private func validateStatusCode(_ statusCode: Int) throws {
         switch statusCode {
         case 200...299:
-            return // Success
+            return
         case 400:
             throw NetworkError.badRequest
         case 401:

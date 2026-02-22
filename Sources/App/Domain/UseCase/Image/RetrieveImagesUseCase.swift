@@ -18,7 +18,6 @@ final class RetrieveImagesUseCase {
         do {
             let result = try await repository.retrieveImages(imagesRequest: request)
             
-            // Check if result is empty
             guard !result.isEmpty else {
                 throw DomainError.noData
             }
@@ -26,10 +25,8 @@ final class RetrieveImagesUseCase {
             let imageMapper = ImageMapper()
             return result.map { imageMapper.call(object: $0) }
         } catch let domainError as DomainError {
-            // Propagate domain errors
             throw domainError
         } catch {
-            // Unknown error - wrap it
             throw DomainError.unknown
         }
     }

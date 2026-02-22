@@ -2,8 +2,8 @@
 //  Image+Presentation.swift
 //  ImageApp
 //
-//  Extension para lógica de presentación del modelo Image
-//  Separa concerns según Clean Architecture
+//  Extension for presentation logic of the Image model
+//  Separates concerns according to Clean Architecture
 //
 
 import Foundation
@@ -12,13 +12,13 @@ import Foundation
 
 extension ImageModel {
     
-    /// Retorna el número de likes formateado para mostrar en UI
-    /// - Returns: String con el número de likes, o vacío si no hay likes
+    /// Returns the number of likes formatted for display in UI
+    /// - Returns: String with the number of likes, or empty if there are no likes
     var formattedLikes: String {
         likes == 0 ? "" : "\(likes)"
     }
     
-    /// Retorna el número de likes con formato abreviado (ej: 1.2K, 3.5M)
+    /// Returns the number of likes in abbreviated format (e.g: 1.2K, 3.5M)
     var formattedLikesShort: String {
         guard likes > 0 else { return "" }
         
@@ -34,17 +34,17 @@ extension ImageModel {
         }
     }
     
-    /// Retorna la fecha formateada de manera relativa (ej: "hace 2 días")
+    /// Returns the date formatted as relative time (e.g: "2 days ago")
     var formattedDate: String {
         DateFormatterHelper.convertToFriendly(createdAt)
     }
     
-    /// Retorna la descripción o un texto por defecto si está vacía
+    /// Returns the description or a default text if empty
     var displayDescription: String {
         desc.isEmpty ? "Sin descripción" : desc
     }
     
-    /// Retorna true si la imagen tiene likes
+    /// Returns true if the image has likes
     var hasLikes: Bool {
         likes > 0
     }

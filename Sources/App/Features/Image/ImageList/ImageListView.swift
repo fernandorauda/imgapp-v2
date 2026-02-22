@@ -16,7 +16,6 @@ struct ImageListView: View {
         NavigationView {
             ScrollView {
                 if viewModel.isLoading {
-                    // Loading skeleton for initial load
                     LazyVGrid(columns: columns, spacing: 16) {
                         ForEach((1...10), id: \.self) { number in
                             VStack(alignment: .leading) {
@@ -30,27 +29,21 @@ struct ImageListView: View {
                     }
                     .padding()
                 } else if viewModel.images.isEmpty && !viewModel.isLoading {
-                    // Empty state (could be after error or no data)
                     emptyStateView
                 } else {
                     VStack(spacing: 0) {
-                        // Pinterest-style masonry layout with infinite scroll
-                        MasonryLayout(columns: 2, spacing: 12) {
-                            ForEach(viewModel.images, id: \.id) { image in
-                                ImageView(image: image)
-                                    .onAppear {
-                                        // Trigger pagination when reaching near the end
-                                        if viewModel.shouldLoadMore(currentImage: image) {
-                                            Task {
-                                                await viewModel.loadMoreImagesIfNeeded()
-                                            }
+                        LazyMasonryView(items: viewModel.images, columns: 2, spacing: 12) { image in
+                            ImageView(image: image)
+                                .onAppear {
+                                    if viewModel.shouldLoadMore(currentImage: image) {
+                                        Task {
+                                            await viewModel.loadMoreImagesIfNeeded()
                                         }
                                     }
-                            }
+                                }
                         }
                         .padding()
                         
-                        // Loading indicator for pagination
                         if viewModel.isLoadingMore {
                             HStack {
                                 Spacer()
@@ -73,6 +66,7 @@ struct ImageListView: View {
             await viewModel.retrieveImages()
         }
         .refreshable {
+            
             await viewModel.retrieveImages()
         }
         .navigationViewStyle(StackNavigationViewStyle())
