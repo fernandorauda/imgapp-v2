@@ -10,7 +10,7 @@ import Foundation
 final class ImageRepository: ImageRepositoryType {
     let dataSource: ImageDataSourceType
     
-    init(dataSource: ImageDataSourceType = ImageDataSource()) {
+    init(dataSource: ImageDataSourceType) {
         self.dataSource = dataSource
     }
     

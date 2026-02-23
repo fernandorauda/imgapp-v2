@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct ApiProvider {
+protocol ApiProviderType {
+    func request<T: Decodable, E: ResponseRequestable>(endpoint: E) async throws -> T where E.Response == T
+}
+
+struct ApiProvider: ApiProviderType {
     
     private let config: NetworkConfigurable
 

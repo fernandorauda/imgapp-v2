@@ -15,6 +15,15 @@ class ImageDto: Codable {
     let user: UserDto?
     let createdAt: String?
     
+    init(id: String?, likes: Int?, desc: String?, urls: UrlDto?, user: UserDto?, createdAt: String?) {
+        self.id = id
+        self.likes = likes
+        self.desc = desc
+        self.urls = urls
+        self.user = user
+        self.createdAt = createdAt
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id
         case likes
@@ -24,5 +33,3 @@ class ImageDto: Codable {
         case createdAt = "created_at"
     }
 }
-
-

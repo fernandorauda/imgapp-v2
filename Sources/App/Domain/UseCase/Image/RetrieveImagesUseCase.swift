@@ -10,7 +10,7 @@ import Foundation
 final class RetrieveImagesUseCase {
     let repository: ImageRepositoryType
     
-    init(repository: ImageRepositoryType = ImageRepository()) {
+    init(repository: ImageRepositoryType) {
         self.repository = repository
     }
     
