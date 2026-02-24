@@ -8,8 +8,8 @@
 import Foundation
 
 final class ImageMapper: Mapper {
-    let urlMapper: UrlMapper = UrlMapper()
-    let userMapper: UserMapper = UserMapper()
+    private let urlMapper: UrlMapper = UrlMapper()
+    private let userMapper: UserMapper = UserMapper()
     
     func call(object: ImageDto) -> ImageModel {
         var user = UserModel.createEmptyInstance()

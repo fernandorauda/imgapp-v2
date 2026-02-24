@@ -12,7 +12,7 @@ protocol RetrieveImagesUseCaseType {
 }
 
 final class RetrieveImagesUseCase: RetrieveImagesUseCaseType {
-    let repository: ImageRepositoryType
+    private let repository: ImageRepositoryType
     
     init(repository: ImageRepositoryType) {
         self.repository = repository

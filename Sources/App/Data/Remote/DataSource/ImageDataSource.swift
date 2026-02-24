@@ -12,7 +12,7 @@ protocol ImageDataSourceType {
 }
 
 final class ImageDataSource: ImageDataSourceType {
-    let apiProvider: ApiProviderType
+    private let apiProvider: ApiProviderType
     
     init(apiProvider: ApiProviderType) {
         self.apiProvider = apiProvider

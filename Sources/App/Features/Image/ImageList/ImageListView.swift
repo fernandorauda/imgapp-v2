@@ -14,24 +14,19 @@ struct ImageListView: View {
         self.viewModel = viewModel
     }
     
-    let columns: [GridItem] = Array(repeating: .init(.adaptive(minimum: 120)), count: 2)
-
     var body: some View {
         NavigationStack {
             ScrollView {
                 if viewModel.isLoading {
-                    LazyVGrid(columns: columns, spacing: 16) {
-                        ForEach((1...10), id: \.self) { number in
-                            VStack(alignment: .leading) {
-                                //Text("\(number)")
-                            }
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 200, maxHeight: 250)
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(16)
-                            .listRowSeparator(.hidden)
-                        }
+                    LazyMasonryView(
+                        items: SkeletonItem.placeholders(count: 10),
+                        columns: 2,
+                        spacing: 12
+                    ) { skeleton in
+                        SkeletonImageView(aspectRatio: skeleton.aspectRatio)
                     }
                     .padding()
+                    .allowsHitTesting(false)
                 } else if viewModel.images.isEmpty && !viewModel.isLoading {
                     emptyStateView
                 } else {

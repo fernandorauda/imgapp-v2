@@ -8,7 +8,7 @@
 import Foundation
 
 final class UserMapper: Mapper {
-    let urlMapper: UrlMapper = UrlMapper()
+    private let urlMapper: UrlMapper = UrlMapper()
     
     func call(object: UserDto) -> UserModel {
         var url = UrlModel.createEmptyInstance()
