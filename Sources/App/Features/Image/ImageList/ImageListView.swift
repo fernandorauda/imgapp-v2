@@ -17,7 +17,7 @@ struct ImageListView: View {
     let columns: [GridItem] = Array(repeating: .init(.adaptive(minimum: 120)), count: 2)
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 if viewModel.isLoading {
                     LazyVGrid(columns: columns, spacing: 16) {
