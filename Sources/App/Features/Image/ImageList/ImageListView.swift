@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ImageListView: View {
-    @StateObject private var viewModel: ImageListViewModel
+    @ObservedObject private var viewModel: ImageListViewModel
     
     init(viewModel: ImageListViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
     }
     
     let columns: [GridItem] = Array(repeating: .init(.adaptive(minimum: 120)), count: 2)
@@ -56,6 +56,7 @@ struct ImageListView: View {
                                     .padding()
                                 Spacer()
                             }
+                            .accessibilityIdentifier("loadingMoreIndicator")
                         }
                     }
                 }
