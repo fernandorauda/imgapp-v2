@@ -16,8 +16,8 @@ final class ImageDataSourceTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        mockApiService = MockApiProvider()
-        sut = ImageDataSource(apiProvider: mockApiService)
+        mockApiService = .init()
+        sut = .init(apiProvider: mockApiService)
     }
     
     
@@ -61,6 +61,8 @@ final class ImageDataSourceTest: XCTestCase {
             // THEN
             XCTAssertEqual(mockApiService.requestCallCount, 1)
             XCTAssertEqual(error.statusCode, 404)
+        } catch {
+            XCTFail("Expected NetworkError but got: \(error)")
         }
     }
 }

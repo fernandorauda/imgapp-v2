@@ -8,10 +8,11 @@
 import Foundation
 @testable import ImageApp
 
-final class ImageDataSourceMock: ImageDataSourceType {
+final class MockImageDataSource: ImageDataSourceType {
     var retrieveImagesCalledCount = 0
     var shouldFail = false
-    var customError = NetworkError.unknown(statusCode: 404)
+    var customError = NetworkError.unauthorized
+    var stubbedResponse: [ImageDto] = []
 
     func retrieveImages(imagesRequest: ImagesRequest) async throws -> [ImageDto] {
         retrieveImagesCalledCount += 1
@@ -19,6 +20,6 @@ final class ImageDataSourceMock: ImageDataSourceType {
             throw customError
         }
         
-        return [];
+        return stubbedResponse;
     }
 }

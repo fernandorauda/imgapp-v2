@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ImageRepositoryType {
-    func retrieveImages(imagesRequest: ImagesRequest) async throws -> [ImageDto]
+    func retrieveImages(imagesRequest: ImagesRequest) async throws -> [ImageModel]
 }

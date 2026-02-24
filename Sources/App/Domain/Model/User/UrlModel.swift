@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UrlModel: Codable {
+struct UrlModel {
     let regular: String
     let full: String
     let small: String

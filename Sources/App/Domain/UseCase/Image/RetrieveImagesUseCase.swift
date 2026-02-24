@@ -7,7 +7,11 @@
 
 import Foundation
 
-final class RetrieveImagesUseCase {
+protocol RetrieveImagesUseCaseType {
+    func invoke(request: ImagesRequest) async throws -> [ImageModel]
+}
+
+final class RetrieveImagesUseCase: RetrieveImagesUseCaseType {
     let repository: ImageRepositoryType
     
     init(repository: ImageRepositoryType) {
@@ -15,19 +19,6 @@ final class RetrieveImagesUseCase {
     }
     
     func invoke(request: ImagesRequest) async throws -> [ImageModel] {
-        do {
-            let result = try await repository.retrieveImages(imagesRequest: request)
-            
-            guard !result.isEmpty else {
-                throw DomainError.noData
-            }
-            
-            let imageMapper = ImageMapper()
-            return result.map { imageMapper.call(object: $0) }
-        } catch let domainError as DomainError {
-            throw domainError
-        } catch {
-            throw DomainError.unknown
-        }
+        return try await repository.retrieveImages(imagesRequest: request)
     }
 }

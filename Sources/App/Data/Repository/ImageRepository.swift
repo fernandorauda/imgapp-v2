@@ -14,14 +14,15 @@ final class ImageRepository: ImageRepositoryType {
         self.dataSource = dataSource
     }
     
-    func retrieveImages(imagesRequest: ImagesRequest) async throws -> [ImageDto] {
+    func retrieveImages(imagesRequest: ImagesRequest) async throws -> [ImageModel] {
         do {
-            return try await dataSource.retrieveImages(imagesRequest: imagesRequest)
+            let imageMapper = ImageMapper()
+            let result = try await dataSource.retrieveImages(imagesRequest: imagesRequest)
+            
+            return result.map { imageMapper.call(object: $0) }
         } catch let networkError as NetworkError {
-            // Convert NetworkError to DomainError at the boundary
             throw networkError.toDomainError()
         } catch {
-            // Unknown error
             throw DomainError.unknown
         }
     }

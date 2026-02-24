@@ -9,7 +9,7 @@ import Foundation
 
 protocol Mapper {
     associatedtype FROM: Codable
-    associatedtype TO: Codable
+    associatedtype TO
     
     func call(object: FROM) -> TO
 }

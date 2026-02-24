@@ -8,7 +8,7 @@
 import Foundation
 
 /// Domain layer errors - User-friendly error messages
-enum DomainError: Error {
+enum DomainError: Error, Equatable {
     case network(NetworkError)
     case noData
     case unauthorized

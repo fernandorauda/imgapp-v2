@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserModel: Codable {
+struct UserModel {
     let id: String
     let username: String
     let name: String
@@ -17,18 +17,6 @@ struct UserModel: Codable {
     let totalCollections: Int
     let location: String
     let bio: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case username
-        case name
-        case location
-        case bio
-        case profileImage = "profile_image"
-        case totalLikes = "total_likes"
-        case totalPhotos = "total_photos"
-        case totalCollections = "total_collections"
-    }
     
     init(
         id: String,

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ImageModel: Codable, Hashable, Identifiable {
+struct ImageModel: Hashable, Identifiable {
     let id: String
     let likes: Int
     let desc: String
@@ -22,15 +22,6 @@ struct ImageModel: Codable, Hashable, Identifiable {
         self.user = user
         self.desc = desc
         self.createdAt = createdAt
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case likes
-        case desc = "description"
-        case urls
-        case user
-        case createdAt = "created_at"
     }
     
     static func == (lhs: ImageModel, rhs: ImageModel) -> Bool {

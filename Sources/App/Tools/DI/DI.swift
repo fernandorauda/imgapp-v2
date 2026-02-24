@@ -29,7 +29,7 @@ final class DIContainer: ObservableObject {
     
     // MARK: - Use Cases
     
-    private lazy var retrieveImagesUseCase: RetrieveImagesUseCase = {
+    private lazy var retrieveImagesUseCase: RetrieveImagesUseCaseType = {
         RetrieveImagesUseCase(repository: imageRepository)
     }()
     

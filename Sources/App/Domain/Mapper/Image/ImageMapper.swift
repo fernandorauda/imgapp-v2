@@ -8,13 +8,10 @@
 import Foundation
 
 final class ImageMapper: Mapper {
-    typealias FROM = ImageDto
-    typealias TO = ImageModel
-    
     let urlMapper: UrlMapper = UrlMapper()
     let userMapper: UserMapper = UserMapper()
     
-    func call(object: FROM) -> TO {
+    func call(object: ImageDto) -> ImageModel {
         var user = UserModel.createEmptyInstance()
         var url = UrlModel.createEmptyInstance()
         

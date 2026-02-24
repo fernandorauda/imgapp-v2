@@ -8,7 +8,7 @@
 import Foundation
 
 /// Network layer errors with HTTP status code handling
-enum NetworkError: Error {
+enum NetworkError: Error, Equatable {
     case invalidURL
     case invalidResponse
     case noData
@@ -80,6 +80,32 @@ enum NetworkError: Error {
             return "Request timed out"
         case .cancelled:
             return "Request was cancelled"
+        }
+    }
+    
+    static func == (lhs: NetworkError, rhs: NetworkError) -> Bool {
+        switch (lhs, rhs) {
+        case (.invalidURL, .invalidURL),
+             (.invalidResponse, .invalidResponse),
+             (.noData, .noData),
+             (.unauthorized, .unauthorized),
+             (.forbidden, .forbidden),
+             (.notFound, .notFound),
+             (.requestTimeout, .requestTimeout),
+             (.tooManyRequests, .tooManyRequests),
+             (.serverError, .serverError),
+             (.badRequest, .badRequest),
+             (.noInternetConnection, .noInternetConnection),
+             (.timeout, .timeout),
+             (.cancelled, .cancelled):
+            return true
+        case let (.unknown(a), .unknown(b)):
+            return a == b
+        case (.decodingFailed, .decodingFailed), (.encodingFailed, .encodingFailed):
+            // No se compara el error asociado, solo el tipo de error
+            return true
+        default:
+            return false
         }
     }
 }

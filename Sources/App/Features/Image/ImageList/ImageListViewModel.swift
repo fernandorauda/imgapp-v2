@@ -32,10 +32,10 @@ final class ImageListViewModel: ObservableObject {
     
     // MARK: - Dependencies
 
-    private let retrieveImagesUseCase: RetrieveImagesUseCase
+    private let retrieveImagesUseCase: RetrieveImagesUseCaseType
     
     // MARK: - Initializer
-    init(retrieveImagesUseCase: RetrieveImagesUseCase) {
+    init(retrieveImagesUseCase: RetrieveImagesUseCaseType) {
         self.retrieveImagesUseCase = retrieveImagesUseCase
     }
     

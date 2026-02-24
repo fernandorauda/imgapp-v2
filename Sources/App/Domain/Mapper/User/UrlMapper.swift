@@ -8,10 +8,7 @@
 import Foundation
 
 final class UrlMapper: Mapper {
-    typealias FROM = UrlDto
-    typealias TO = UrlModel
-
-    func call(object: FROM) -> TO {
+    func call(object: UrlDto) -> UrlModel {
         UrlModel(
             regular: object.regular.orEmptyString(),
             full: object.full.orEmptyString(),

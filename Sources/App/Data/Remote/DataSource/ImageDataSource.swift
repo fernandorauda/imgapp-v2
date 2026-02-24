@@ -25,10 +25,8 @@ final class ImageDataSource: ImageDataSourceType {
             
             return response
         } catch let networkError as NetworkError {
-            // Propagate NetworkError to upper layers
             throw networkError
         } catch {
-            // Unknown error - wrap it
             throw NetworkError.unknown(statusCode: -1)
         }
     }
