@@ -49,12 +49,12 @@ extension UserModel {
     
     /// Returns the bio or default text if empty
     var displayBio: String {
-        bio.isEmpty ? "Sin biografía" : bio
+        bio.isEmpty ? .localized("user.no_bio") : bio
     }
     
     /// Returns the location or default text if empty
     var displayLocation: String {
-        location.isEmpty ? "Ubicación no disponible" : location
+        location.isEmpty ? .localized("user.no_location") : location
     }
     
     /// Indicates if the user has statistics

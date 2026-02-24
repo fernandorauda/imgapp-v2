@@ -62,7 +62,7 @@ struct ImageListView: View {
                 }
             }
             .listStyle(.plain)
-            .navigationTitle("Images")
+            .navigationTitle(L10n.Navigation.imagesTitle)
             .alert(isPresented: $viewModel.showError) {
                 createErrorAlert()
             }
@@ -82,20 +82,20 @@ struct ImageListView: View {
     private func createErrorAlert() -> Alert {
         if viewModel.isRetryable {
             return Alert(
-                title: Text("Error"),
-                message: Text(viewModel.errorMessage ?? "Ocurrió un error inesperado"),
-                primaryButton: .default(Text("Reintentar")) {
+                title: Text(L10n.Error.title),
+                message: Text(viewModel.errorMessage.map { LocalizedStringKey($0) } ?? L10n.Error.unexpected),
+                primaryButton: .default(Text(L10n.Action.retry)) {
                     viewModel.retryLastOperation()
                 },
-                secondaryButton: .cancel(Text("Cancelar")) {
+                secondaryButton: .cancel(Text(L10n.Action.cancel)) {
                     viewModel.clearError()
                 }
             )
         } else {
             return Alert(
-                title: Text("Error"),
-                message: Text(viewModel.errorMessage ?? "Ocurrió un error inesperado"),
-                dismissButton: .default(Text("OK")) {
+                title: Text(L10n.Error.title),
+                message: Text(viewModel.errorMessage.map { LocalizedStringKey($0) } ?? L10n.Error.unexpected),
+                dismissButton: .default(Text(L10n.Action.ok)) {
                     viewModel.clearError()
                 }
             )
@@ -110,7 +110,7 @@ struct ImageListView: View {
                 .font(.system(size: 60))
                 .foregroundColor(.gray)
             
-            Text(viewModel.errorMessage ?? "No hay imágenes para mostrar")
+            Text(viewModel.errorMessage.map { LocalizedStringKey($0) } ?? L10n.ImageList.emptyMessage)
                 .font(.title3)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
@@ -124,7 +124,7 @@ struct ImageListView: View {
                 }) {
                     HStack {
                         Image(systemName: "arrow.clockwise")
-                        Text("Reintentar")
+                        Text(L10n.Action.retry)
                     }
                     .font(.headline)
                     .foregroundColor(.white)

@@ -1,0 +1,42 @@
+/*
+  Localizable.strings (Spanish)
+  ImageApp
+  
+  Idioma secundario: Español
+*/
+
+// MARK: - Navigation
+"navigation.images.title" = "Imágenes";
+
+// MARK: - Image List
+"image_list.empty.message" = "No hay imágenes para mostrar";
+"image_list.loading" = "Cargando...";
+
+// MARK: - Errors (User-facing messages)
+"error.title" = "Error";
+"error.unexpected" = "Ocurrió un error inesperado";
+"error.no_internet" = "No hay conexión a internet. Verifica tu conexión e intenta de nuevo.";
+"error.timeout" = "La solicitud tardó demasiado. Verifica tu conexión e intenta de nuevo.";
+"error.unauthorized" = "Credenciales inválidas. Por favor, verifica tu API key.";
+"error.forbidden" = "No tienes permiso para acceder a este recurso.";
+"error.not_found" = "El recurso solicitado no existe.";
+"error.rate_limit" = "Demasiadas solicitudes. Espera un momento e intenta de nuevo.";
+"error.server" = "Error en el servidor. Por favor, intenta más tarde.";
+"error.bad_request" = "La solicitud es inválida. Por favor, intenta de nuevo.";
+"error.decoding" = "Error al procesar la respuesta del servidor.";
+"error.cancelled" = "La solicitud fue cancelada.";
+"error.network_generic" = "Ocurrió un error de red. Por favor, intenta de nuevo.";
+"error.service_unavailable" = "El servicio no está disponible en este momento. Intenta más tarde.";
+"error.no_images" = "No se encontraron imágenes";
+
+// MARK: - Actions
+"action.retry" = "Reintentar";
+"action.cancel" = "Cancelar";
+"action.ok" = "OK";
+
+// MARK: - Presentation - Image
+"image.no_description" = "Sin descripción";
+
+// MARK: - Presentation - User
+"user.no_bio" = "Sin biografía";
+"user.no_location" = "Ubicación no disponible";

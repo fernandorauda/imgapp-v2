@@ -41,7 +41,7 @@ extension ImageModel {
     
     /// Returns the description or a default text if empty
     var displayDescription: String {
-        desc.isEmpty ? "Sin descripción" : desc
+        desc.isEmpty ? .localized("image.no_description") : desc
     }
     
     /// Returns true if the image has likes

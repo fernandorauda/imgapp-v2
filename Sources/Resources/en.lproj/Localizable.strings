@@ -1,0 +1,42 @@
+/*
+  Localizable.strings (English)
+  ImageApp
+  
+  Primary language: English
+*/
+
+// MARK: - Navigation
+"navigation.images.title" = "Images";
+
+// MARK: - Image List
+"image_list.empty.message" = "No images to display";
+"image_list.loading" = "Loading...";
+
+// MARK: - Errors (User-facing messages)
+"error.title" = "Error";
+"error.unexpected" = "An unexpected error occurred";
+"error.no_internet" = "No internet connection. Check your connection and try again.";
+"error.timeout" = "The request took too long. Check your connection and try again.";
+"error.unauthorized" = "Invalid credentials. Please check your API key.";
+"error.forbidden" = "You don't have permission to access this resource.";
+"error.not_found" = "The requested resource doesn't exist.";
+"error.rate_limit" = "Too many requests. Please wait a moment and try again.";
+"error.server" = "Server error. Please try again later.";
+"error.bad_request" = "Invalid request. Please try again.";
+"error.decoding" = "Failed to process the server response.";
+"error.cancelled" = "The request was cancelled.";
+"error.network_generic" = "A network error occurred. Please try again.";
+"error.service_unavailable" = "The service is currently unavailable. Please try again later.";
+"error.no_images" = "No images found";
+
+// MARK: - Actions
+"action.retry" = "Retry";
+"action.cancel" = "Cancel";
+"action.ok" = "OK";
+
+// MARK: - Presentation - Image
+"image.no_description" = "No description";
+
+// MARK: - Presentation - User
+"user.no_bio" = "No bio available";
+"user.no_location" = "Location not available";

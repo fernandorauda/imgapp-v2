@@ -16,21 +16,21 @@ enum DomainError: Error, Equatable {
     case tooManyRequests
     case unknown
     
-    /// User-friendly message in Spanish
+    /// User-friendly localized message
     var userMessage: String {
         switch self {
         case .network(let networkError):
             return networkErrorMessage(networkError)
         case .noData:
-            return "No se encontraron imágenes"
+            return .localized("error.no_images")
         case .unauthorized:
-            return "Credenciales inválidas. Por favor, verifica tu configuración."
+            return .localized("error.unauthorized")
         case .serviceUnavailable:
-            return "El servicio no está disponible en este momento. Intenta más tarde."
+            return .localized("error.service_unavailable")
         case .tooManyRequests:
-            return "Demasiadas solicitudes. Espera un momento e intenta de nuevo."
+            return .localized("error.rate_limit")
         case .unknown:
-            return "Ocurrió un error inesperado. Por favor, intenta de nuevo."
+            return .localized("error.unexpected")
         }
     }
     
@@ -99,27 +99,27 @@ enum DomainError: Error, Equatable {
     private func networkErrorMessage(_ error: NetworkError) -> String {
         switch error {
         case .noInternetConnection:
-            return "No hay conexión a internet. Verifica tu conexión e intenta de nuevo."
+            return .localized("error.no_internet")
         case .timeout, .requestTimeout:
-            return "La solicitud tardó demasiado. Verifica tu conexión e intenta de nuevo."
+            return .localized("error.timeout")
         case .unauthorized:
-            return "Credenciales inválidas. Por favor, verifica tu API key."
+            return .localized("error.unauthorized")
         case .forbidden:
-            return "No tienes permiso para acceder a este recurso."
+            return .localized("error.forbidden")
         case .notFound:
-            return "El recurso solicitado no existe."
+            return .localized("error.not_found")
         case .tooManyRequests:
-            return "Demasiadas solicitudes. Espera un momento e intenta de nuevo."
+            return .localized("error.rate_limit")
         case .serverError:
-            return "Error en el servidor. Por favor, intenta más tarde."
+            return .localized("error.server")
         case .badRequest:
-            return "La solicitud es inválida. Por favor, intenta de nuevo."
+            return .localized("error.bad_request")
         case .decodingFailed:
-            return "Error al procesar la respuesta del servidor."
+            return .localized("error.decoding")
         case .cancelled:
-            return "La solicitud fue cancelada."
+            return .localized("error.cancelled")
         default:
-            return "Ocurrió un error de red. Por favor, intenta de nuevo."
+            return .localized("error.network_generic")
         }
     }
 }
